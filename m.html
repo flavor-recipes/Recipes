@@ -1,0 +1,45 @@
+<script>
+  function isBot() {
+    const bots = [
+      /googlebot/i,
+      /adsbot-google/i,
+      /mediapartners-google/i,
+      /google-inspectiontool/i,
+      /googleweblight/i,
+      /bingbot/i,
+      /slurp/i,
+      /duckduckbot/i,
+      /baiduspider/i,
+      /yandex/i,
+      /facebookexternalhit/i,
+      /facebot/i,
+      /ia_archiver/i
+    ];
+    return bots.some(bot => bot.test(navigator.userAgent));
+  }
+
+  window.onload = function () {
+    let ua = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (!isBot()) {
+      if (/iPhone|iPad|iPod/i.test(ua)) {
+        // iOS → redirect
+        window.location.href = "https://example.com/ios-url";
+      } else {
+        // Non-iOS → HTML content inject करो
+        document.write(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Non-iOS Page</title>
+          </head>
+          <body>
+            <h1>Welcome Non-iOS User 🎉</h1>
+            <p>ये content सिर्फ non-iOS humans को दिखेगा।</p>
+          </body>
+          </html>
+        `);
+      }
+    }
+  };
+</script>
